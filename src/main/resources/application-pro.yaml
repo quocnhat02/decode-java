@@ -1,12 +1,12 @@
 spring:
-  profiles:
-    active: dev
+  application:
+    name: Master Java Backend Product
 
 server:
-  port: 8001
+  port: 8003
 
 player:
-  name: LightCodeSEDefault
+  name: LightCodeSEPro
   age: 22
   maps: {k1: v1, k2: v2}
   lists:
