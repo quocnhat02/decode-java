@@ -1,16 +1,10 @@
 spring:
   application:
     name: Master Java Backend Dev
+  datasource:
+    url: jdbc:mysql://localhost:3336/shopdevgo
+    username
 
 server:
   port: 8002
 
-player:
-  name: LightCodeSEDev
-  age: 22
-  maps: {k1: v1, k2: v2}
-  lists:
-    - list1
-    - list2
-  isActive: true
-  birth: 2002/01/01
