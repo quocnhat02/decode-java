@@ -15,14 +15,14 @@ import java.util.List;
 @Repository
 //@RepositoryDefinition(domainClass = UserEntity.class, idClass = Long.class)
 public interface UserRepository extends JpaRepository<UserEntity, Long> , JpaSpecificationExecutor<UserEntity> {
-    UserEntity findByUserNameAndEmail(String username, String email);
+    UserEntity findByUserNameAndUserEmail(String userName, String userEmail);
 
     UserEntity findByUserName(String username);
 
 //    LIKE %?
-    List<UserEntity> findByUserNameStartingWith(String email);
+    List<UserEntity> findByUserNameStartingWith(String userEmail);
 //    LIKE ?%
-    List<UserEntity> findByUserNameEndingWith(String email);
+    List<UserEntity> findByUserNameEndingWith(String userEmail);
 
 //    WHERE id < ...
     List<UserEntity> findByIdLessThan(Long id);
@@ -31,10 +31,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> , JpaSpe
     @Query("SELECT u FROM UserEntity u WHERE u.id = (SELECT MAX(u.id) FROM UserEntity p)")
     UserEntity findMaxIdUser();
 
-    @Query("SELECT u FROM UserEntity u WHERE u.id = ?1 AND u.email = ?2")
+    @Query("SELECT u FROM UserEntity u WHERE u.id = ?1 AND u.userEmail = ?2")
     List<UserEntity> getUserEntitiesBy(String username, String email);
 
-    @Query("SELECT u FROM UserEntity u WHERE u.id = :username AND u.email = :email")
+    @Query("SELECT u FROM UserEntity u WHERE u.id = :username AND u.userEmail = :email")
     List<UserEntity> getUserEntitiesByParam(@Param("username") String username,@Param("email") String email);
 
 //    UPDATE
