@@ -1,9 +1,13 @@
 package com.lightcodese.dsa.entity.user;
 
+import com.lightcodese.dsa.entity.feed.FeedEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +23,12 @@ public class UserEntity {
     private String userName;
     @Column(columnDefinition = "varchar(255) comment 'user email'", nullable = false, unique = true)
     private String userEmail;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<FeedEntity> feeds;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cccdId")
+    private CCCDEntity cccd;
 }
